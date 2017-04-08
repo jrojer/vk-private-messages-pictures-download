@@ -24,7 +24,7 @@ for mes in messages[::-1]:
             # there must be attachments
             for att in mes['attachments']:
 
-                # iterate over attachments: newer at the beginning
+                # iterate over attachments: newer at the end
                 picture_links.append(att['photo']['src_xbig'])
 
 print(len(picture_links), 'pictures found')
