@@ -13,19 +13,16 @@ messages = api.messages.get(count = 30, offset = 0)
 
 picture_links = []
 
-for mes in messages[::-1]: 
-
-    # iterate over messages: newer messages at the end
-    if ( isinstance(mes,dict)):
-
-        # message must be a dictionary
-        if ('attachments' in mes):
-
-            # there must be attachments
+# iterate over messages: newer messages at the end
+for mes in messages[::-1]:     
+    # message must be a dictionary
+    if isinstance(mes,dict):
+        # there must be attachments
+        if 'attachments' in mes:
+            # iterate over attachments: newer at the end
             for att in mes['attachments']:
-
-                # iterate over attachments: newer at the end
-                picture_links.append(att['photo']['src_xbig'])
+                if 'photo' in att:
+                    picture_links.append(att['photo']['src_xbig'])
 
 print(len(picture_links), 'pictures found')
 
