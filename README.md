@@ -15,3 +15,5 @@ To use the script:
 7. launch the script 
 
 the pictures will be saved at the same folder
+
+Скачать картинки и документы из своих личных сообщений вконтакте (vk.com). Python скрипт.
