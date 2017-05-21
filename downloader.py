@@ -15,18 +15,26 @@ def GetAPI():
 def GetMessages(api, count_ = 30, offset_ = 0):
     return api.messages.get(count = count_, offset = offset_)
 
-def ProcessMessage(mes,picture_links):
+def ProcessPhotos(att,picture_links):
     photo_sizes = ['src', 'src_small', 'src_big', 'src_xbig', 'src_xxbig', 'src_xxxbig']
+    if 'photo' in att:
+        # chose the biggest photo size
+        for psize in photo_sizes[::-1]:
+            if psize in att['photo']:
+                picture_links.append(att['photo'][psize])
+                break
+
+def ProcessDocs(att,picture_links):
+    if 'doc' in att:
+        picture_links.append(att['doc']['url'])
+
+def ProcessMessage(mes,picture_links):
     # there must be attachments
     if 'attachments' in mes:
         # iterate over attachments: newer at the end
         for att in mes['attachments']:
-            if 'photo' in att:
-                # chose the biggest photo size
-                for psize in photo_sizes[::-1]:
-                    if psize in att['photo']:
-                        picture_links.append(att['photo'][psize])
-                        break
+            ProcessPhotos(att,picture_links)
+            ProcessDocs(att,picture_links)
 
 def DownloadPictures(picture_links):
 
