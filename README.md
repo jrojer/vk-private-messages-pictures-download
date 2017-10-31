@@ -7,9 +7,9 @@ To use the script:
 3. In your application's setting find and copy "Application ID"
 4. Edit the "downloader.py" file:
 
-4.1. Give the "Application ID" and your credentials in vk.AuthSession method
+ * Give the "Application ID" and your credentials in vk.AuthSession method
 
-4.2. In the api.messages.get method set: count -- number of messages to get, offset -- the offset.
+ * In the api.messages.get method set: count -- number of messages to get, offset -- the offset.
 
 6. cd to the script's folder
 7. launch the script 
